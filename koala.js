@@ -108,8 +108,8 @@ var koala = {
         .attr('y',   function(d) { return d.y; })
 	    .attr("rx", 9)
 	   	.attr("ry", 9)
-        .attr('width', 4)
-		.attr('height', 4)
+        .attr('width', 8)
+		.attr('height', 8)
         .attr('fill', '#ffffff')
           .transition()
           .duration(1000);
