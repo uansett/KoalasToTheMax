@@ -99,23 +99,29 @@ var koala = {
 
   Circle.addToVis = function(vis, circles, init) {
     var circle = vis.selectAll('.nope').data(circles)
-      .enter().append('circle');
+      .enter().append('rect');
 
     if (init) {
       // Setup the initial state of the initial circle
       circle = circle
-        .attr('cx',   function(d) { return d.x; })
-        .attr('cy',   function(d) { return d.y; })
-        .attr('r', 4)
+        .attr('x',   function(d) { return d.x; })
+        .attr('y',   function(d) { return d.y; })
+	    .attr("rx", 9)
+	   	.attr("ry", 9)
+        .attr('width', 4)
+		.attr('height', 4)
         .attr('fill', '#ffffff')
           .transition()
           .duration(1000);
     } else {
       // Setup the initial state of the opened circles
       circle = circle
-        .attr('cx',   function(d) { return d.parent.x; })
-        .attr('cy',   function(d) { return d.parent.y; })
-        .attr('r',    function(d) { return d.parent.size / 2; })
+        .attr('x',   function(d) { return d.parent.x; })
+        .attr('y',   function(d) { return d.parent.y; })
+	    .attr("rx", 9)
+	   	.attr("ry", 9)
+        .attr('width',    function(d) { return d.parent.size; })
+        .attr('height',    function(d) { return d.parent.size; })
         .attr('fill', function(d) { return String(d.parent.rgb); })
         .attr('fill-opacity', 0.68)
           .transition()
@@ -124,9 +130,12 @@ var koala = {
 
     // Transition the to the respective final state
     circle
-      .attr('cx',   function(d) { return d.x; })
-      .attr('cy',   function(d) { return d.y; })
-      .attr('r',    function(d) { return d.size / 2; })
+      .attr('x',   function(d) { return d.x; })
+      .attr('y',   function(d) { return d.y; })
+      .attr("rx", 9)
+   	  .attr("ry", 9)
+      .attr('width',    function(d) { return d.size; })
+      .attr('height',    function(d) { return d.size; })
       .attr('fill', function(d) { return String(d.rgb); })
       .attr('fill-opacity', 1)
       .each('end',  function(d) { d.node = this; });
